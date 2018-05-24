@@ -4,16 +4,18 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import java.util.Arrays;
-import java.util.stream.Stream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
 @SpringBootApplication
 public class StepchartApplication {
 
     public static void main(String[] args) {
 	    try(ConfigurableApplicationContext context = SpringApplication.run(StepchartApplication.class, args)) {
-	        StepchartApplication application = context.getBean(StepchartApplication.class);
-	        application.run(args);
+            StepchartApplication stepchart = context.getBean(StepchartApplication.class);
+	        stepchart.run(args);
         } catch (Exception e) {
 	        // FIXME
 	        e.printStackTrace();
@@ -21,7 +23,17 @@ public class StepchartApplication {
     }
 
     public void run(String[] args) {
-        System.out.println("args:");
-        Arrays.stream(args).forEach(System.out::println);
+
+        if (args.length != 1) {
+            throw new IndexOutOfBoundsException("usage: command path");
+        }
+
+        try {
+            // TODO : use component
+            List<String> lines = Files.readAllLines(Paths.get(args[0]));
+            lines.stream().forEach(System.out::println);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
