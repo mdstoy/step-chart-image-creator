@@ -1,5 +1,6 @@
 package com.github.mdstoy.stepchart;
 
+import com.github.mdstoy.stepchart.model.chart.ArrowAttribute;
 import org.springframework.stereotype.Component;
 
 import java.awt.image.BufferedImage;

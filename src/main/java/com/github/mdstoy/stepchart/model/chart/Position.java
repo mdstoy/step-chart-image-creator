@@ -1,6 +1,6 @@
-package com.github.mdstoy.stepchart;
+package com.github.mdstoy.stepchart.model.chart;
 
-public enum Resolution {
+public enum Position {
 
     WHILE,
     HALF,

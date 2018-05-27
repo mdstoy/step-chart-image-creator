@@ -1,5 +1,6 @@
 package com.github.mdstoy.stepchart;
 
+import com.github.mdstoy.stepchart.model.chart.StepChart;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -37,7 +38,6 @@ public class StepChartApplication {
         try {
             StepChart stepChart = StepChart.of(path);
 
-            // TODO : use component
         } catch (IOException e) {
             e.printStackTrace();
         }
