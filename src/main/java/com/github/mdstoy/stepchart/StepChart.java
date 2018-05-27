@@ -1,5 +1,6 @@
 package com.github.mdstoy.stepchart;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -10,8 +11,10 @@ import java.util.List;
 @Component
 public class StepChart {
 
+    private ArrowContainer arrowContainer;
+
     private StepChart() {
-        // TODO
+        this.arrowContainer = new ArrowContainer();
     }
 
     public static StepChart of(Path path) throws IOException {

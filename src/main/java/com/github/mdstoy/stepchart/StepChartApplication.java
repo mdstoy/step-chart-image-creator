@@ -14,7 +14,6 @@ import java.nio.file.Paths;
 public class StepChartApplication {
 
     public static void main(String[] args) {
-        System.out.println(">>>>>>>>>>>>>>>>>>>>" + args[0]);
 	    try(ConfigurableApplicationContext context = SpringApplication.run(StepChartApplication.class, args)) {
             StepChartApplication stepChart = context.getBean(StepChartApplication.class);
 	        stepChart.run(args);
@@ -24,10 +23,9 @@ public class StepChartApplication {
     }
 
     public void run(String[] args) throws FileNotFoundException {
-        System.out.println("++++++++++++++++++" + args);
 
         if (args.length != 1) {
-            throw new IndexOutOfBoundsException("Required only one option is file path. [" + args.length + "]");
+            throw new IndexOutOfBoundsException("Required only one option is file path.");
         }
 
         Path path = Paths.get(args[0]);
@@ -38,6 +36,7 @@ public class StepChartApplication {
 
         try {
             StepChart stepChart = StepChart.of(path);
+
             // TODO : use component
         } catch (IOException e) {
             e.printStackTrace();
