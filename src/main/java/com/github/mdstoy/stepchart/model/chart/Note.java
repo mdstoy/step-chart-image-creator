@@ -1,6 +1,6 @@
 package com.github.mdstoy.stepchart.model.chart;
 
-public enum Position {
+public enum Note {
 
     QUARTER,
     EIGHTH,

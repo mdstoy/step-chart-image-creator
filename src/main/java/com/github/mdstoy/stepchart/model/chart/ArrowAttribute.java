@@ -10,4 +10,9 @@ public class ArrowAttribute {
         this.position = position;
         this.direction = direction;
     }
+
+    @Override
+    public String toString() {
+        return String.format("position [%s] Direction [%s]", position, direction);
+    }
 }

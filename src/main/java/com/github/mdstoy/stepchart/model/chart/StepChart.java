@@ -1,7 +1,5 @@
 package com.github.mdstoy.stepchart.model.chart;
 
-import org.springframework.stereotype.Component;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,13 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
 public class StepChart {
 
     private List<MusicalBar> musicalBars;
 
-    private StepChart() {
-
+    private StepChart(List<MusicalBar> musicalBars) {
+        this.musicalBars = musicalBars;
     }
 
     public static StepChart of(Path path) throws IOException {
@@ -32,10 +29,14 @@ public class StepChart {
             bar.add(line);
         }
 
-        bars.stream()
+        return new StepChart(bars.stream()
                 .map(MusicalBar::of)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList())
+        );
+    }
 
-        return new StepChart();
+    @Override
+    public String toString() {
+        return musicalBars.toString();
     }
 }

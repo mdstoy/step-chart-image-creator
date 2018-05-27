@@ -19,18 +19,24 @@ public class MusicalBar {
         List<ArrowAttribute> attributes = new ArrayList<>();
 
         for (int index = 0; index < resolution; ++index) {
-            int position = index % (resolution / 4);
             String line = bar.get(index);
             for (int column = 0; column < width; ++column) {
                 if (line.charAt(column) != '0') {
-                    // FIXME : position は note と pos の組み合わせ
-                    attributes.add(new ArrowAttribute(null, Direction.of(column)));
+                    // FIXME : 4分と8分しかない
+                    Note note = (index % (resolution / 4)) == 0 ? Note.QUARTER : Note.EIGHTH;
+                    Position position = new Position(index / (resolution / 4), note);
+                    ArrowAttribute attribute = new ArrowAttribute(position, Direction.of(column));
+                    attributes.add(attribute);
                 }
             }
         }
 
-        System.out.println(bar.size());
         //FIXME
-        return new MusicalBar(null);
+        return new MusicalBar(attributes);
+    }
+
+    @Override
+    public String toString() {
+        return attributes.toString();
     }
 }

@@ -37,6 +37,7 @@ public class StepChartApplication {
 
         try {
             StepChart stepChart = StepChart.of(path);
+            System.out.println(stepChart);
 
         } catch (IOException e) {
             e.printStackTrace();
