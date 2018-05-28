@@ -6,7 +6,7 @@ public class ArrowAttribute {
 
     Direction direction;
 
-    ArrowAttribute(Position position, Direction direction) {
+    public ArrowAttribute(Position position, Direction direction) {
         this.position = position;
         this.direction = direction;
     }

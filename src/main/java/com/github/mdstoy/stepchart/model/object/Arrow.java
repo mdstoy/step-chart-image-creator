@@ -8,7 +8,7 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Arrow {
+public class Arrow implements Cloneable{
 
     BufferedImage image;
 
@@ -21,8 +21,17 @@ public class Arrow {
 
     }
 
+    private Arrow(BufferedImage image) {
+        this.image = image;
+    }
+
     public static Arrow of(String imagePath) throws IOException{
         return new Arrow(imagePath);
+    }
+
+    public static Arrow of(Arrow src) {
+        BufferedImage newImage = src.image.getSubimage(0, 0, src.image.getWidth(), src.image.getHeight());
+        return new Arrow(newImage);
     }
 
     // FIXME : インスタンスの扱い

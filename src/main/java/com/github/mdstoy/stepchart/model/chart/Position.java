@@ -6,7 +6,7 @@ public class Position {
 
     Note note;
 
-    Position(int measure, Note note) {
+    public Position(int measure, Note note) {
         this.measure = measure;
         this.note = note;
     }

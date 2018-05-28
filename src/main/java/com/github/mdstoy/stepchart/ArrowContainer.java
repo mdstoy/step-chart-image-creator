@@ -2,6 +2,9 @@ package com.github.mdstoy.stepchart;
 
 import com.github.mdstoy.stepchart.config.ArrowConfiguration;
 import com.github.mdstoy.stepchart.model.chart.ArrowAttribute;
+import com.github.mdstoy.stepchart.model.chart.Direction;
+import com.github.mdstoy.stepchart.model.chart.Note;
+import com.github.mdstoy.stepchart.model.chart.Position;
 import com.github.mdstoy.stepchart.model.object.Arrow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,8 +28,11 @@ public class ArrowContainer {
 
     // FIXME : これじゃない
     private void setup() throws IOException{
-        Arrow arrow = Arrow.of(arrowConfig.getImagePath());
-        arrows.put(null, arrow);
+        Arrow down = Arrow.of(arrowConfig.getImagePath());
+
+        // FIXME : model の定義がおかしい？
+        arrows.put(new ArrowAttribute(new Position(1, Note.QUARTER), Direction.ONE_DOWN), down);
+
     }
 
     public Arrow getArrow(ArrowAttribute attribute) {
