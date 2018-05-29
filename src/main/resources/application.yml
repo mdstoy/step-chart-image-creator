@@ -1,2 +1,2 @@
-arrow:
-    imagePath: "image/down.png"
+image:
+    arrow: "image/down.png"

@@ -29,8 +29,8 @@ public class Arrow implements Cloneable{
         return new Arrow(imagePath);
     }
 
-    public static Arrow of(Arrow src) {
-        BufferedImage newImage = src.image.getSubimage(0, 0, src.image.getWidth(), src.image.getHeight());
+    public static Arrow of(BufferedImage src) {
+        BufferedImage newImage = src.getSubimage(0, 0, src.getWidth(), src.getHeight());
         return new Arrow(newImage);
     }
 
@@ -49,19 +49,17 @@ public class Arrow implements Cloneable{
         return image;
     }
 
-    public BufferedImage rotate(int angle) {
+    public Arrow rotate(int angle) {
         // 変換の設定
         AffineTransform at = new AffineTransform();
-        // TODO : 24d は取ってくる？
-        at.setToRotation(Math.toRadians(angle), 24d, 24d);
+        at.setToRotation(Math.toRadians(angle), image.getWidth() / 2, image.getHeight() / 2);
         // 変換の実操作
         AffineTransformOp op = new AffineTransformOp(at, AffineTransformOp.TYPE_BICUBIC);
 
         // 書き出し用
-        // TODO : 48 は取ってくる
-        BufferedImage newImage = new BufferedImage(48, 48, BufferedImage.TYPE_INT_ARGB);
+        BufferedImage newImage = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_ARGB);
         op.filter(image, newImage);
 
-        return newImage;
+        return new Arrow(newImage);
     }
 }
