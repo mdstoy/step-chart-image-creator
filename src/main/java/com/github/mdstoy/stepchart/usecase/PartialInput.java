@@ -35,7 +35,7 @@ public class PartialInput {
 
         try {
             StepChart stepChart = StepChart.of(path);
-            System.out.println(stepChart);
+            stepChart.createImage();
 
         } catch (IOException e) {
             e.printStackTrace();

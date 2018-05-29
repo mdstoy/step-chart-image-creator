@@ -19,11 +19,15 @@ public class StepChart {
 
         List<List<String>> bars = new ArrayList<>();
         List<String> bar = new ArrayList<>();
+        bars.add(bar);
         for (String line : Files.readAllLines(path)) {
-            if (line.matches("[,;]")) {
-                bars.add(bar);
+            if (line.startsWith(",")) {
                 bar = new ArrayList<>();
+                bars.add(bar);
                 continue;
+            }
+            if (line.endsWith(";")) {
+                break;
             }
 
             bar.add(line);
@@ -33,6 +37,10 @@ public class StepChart {
                 .map(MusicalBar::of)
                 .collect(Collectors.toList())
         );
+    }
+
+    public void createImage() {
+        System.out.println(musicalBars.toString());
     }
 
     @Override
