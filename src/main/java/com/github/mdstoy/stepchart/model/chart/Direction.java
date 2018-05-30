@@ -4,14 +4,10 @@ import java.util.Arrays;
 
 public enum Direction {
 
-    ONE_LEFT(0),
-    ONE_DOWN(1),
-    ONE_UP(2),
-    ONE_RIGHT(3),
-    TWO_LEFT(4),
-    TWO_DOWN(5),
-    TWO_UP(6),
-    TWO_RIGHT(7);
+    LEFT(0),
+    DOWN(1),
+    UP(2),
+    RIGHT(3);
 
     private int position;
 
@@ -21,7 +17,7 @@ public enum Direction {
 
     public static Direction of(int column) {
         return Arrays.stream(values())
-                .filter(dir -> dir.position == column)
+                .filter(dir -> dir.position == column % 4)
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
     }

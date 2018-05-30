@@ -6,13 +6,16 @@ public class ArrowAttribute {
 
     Direction direction;
 
-    public ArrowAttribute(Position position, Direction direction) {
+    Side side;
+
+    public ArrowAttribute(Position position, Direction direction, Side side) {
         this.position = position;
         this.direction = direction;
+        this.side = side;
     }
 
     @Override
     public String toString() {
-        return String.format("position [%s] Direction [%s]", position, direction);
+        return String.format("p[%s] d[%s] s[%s]", position, direction, side);
     }
 }

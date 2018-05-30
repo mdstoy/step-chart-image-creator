@@ -40,6 +40,7 @@ public class StepChart {
     }
 
     public void createImage() {
+        System.out.println("createImage");
         System.out.println(musicalBars.toString());
     }
 

@@ -25,7 +25,7 @@ public class MusicalBar {
                     // FIXME : 4分と8分しかない
                     Note note = (index % (resolution / 4)) == 0 ? Note.QUARTER : Note.EIGHTH;
                     Position position = new Position(index / (resolution / 4), note);
-                    ArrowAttribute attribute = new ArrowAttribute(position, Direction.of(column));
+                    ArrowAttribute attribute = new ArrowAttribute(position, Direction.of(column), Side.of(column));
                     attributes.add(attribute);
                 }
             }

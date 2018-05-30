@@ -13,7 +13,8 @@ public class StepChartApplication {
             PartialInput bean = context.getBean(PartialInput.class);
 	        bean.run(args);
         } catch (Exception e) {
-	        System.err.println(e.getMessage());
+	        e.printStackTrace();
+            System.err.println(e.getMessage());
         }
     }
 }
