@@ -29,13 +29,17 @@ public class Arrow implements Cloneable{
         return new Arrow(imagePath);
     }
 
-    public static Arrow of(BufferedImage src) {
+    private static Arrow of(BufferedImage src) {
         BufferedImage newImage = src.getSubimage(0, 0, src.getWidth(), src.getHeight());
         return new Arrow(newImage);
     }
 
-    // FIXME : インスタンスの扱い
-    public BufferedImage changeColor(int r, int g, int b) {
+    @Override
+    public Arrow clone() {
+        return Arrow.of(image);
+    }
+
+    public void changeColor(int r, int g, int b) {
         for(int i = 0; i < image.getHeight(); ++i) {
             for(int j = 0; j < image.getWidth(); ++j) {
                 if (image.getRGB(i, j) == -16777216) {
@@ -45,11 +49,9 @@ public class Arrow implements Cloneable{
                 }
             }
         }
-
-        return image;
     }
 
-    public Arrow rotate(int angle) {
+    public void rotate(int angle) {
         // 変換の設定
         AffineTransform at = new AffineTransform();
         at.setToRotation(Math.toRadians(angle), image.getWidth() / 2, image.getHeight() / 2);
@@ -60,6 +62,6 @@ public class Arrow implements Cloneable{
         BufferedImage newImage = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_ARGB);
         op.filter(image, newImage);
 
-        return new Arrow(newImage);
+        this.image = newImage;
     }
 }
