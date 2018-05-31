@@ -2,6 +2,8 @@ package com.github.mdstoy.stepchart.model.chart;
 
 public class ArrowAttribute {
 
+    // FIXME : これをどう作るか
+
     Position position;
 
     Direction direction;
