@@ -1,9 +1,7 @@
-package com.github.mdstoy.stepchart;
+package com.github.mdstoy.stepchart.model.object;
 
 import com.github.mdstoy.stepchart.config.ImageConfiguration;
 import com.github.mdstoy.stepchart.model.chart.Direction;
-import com.github.mdstoy.stepchart.model.chart.Note;
-import com.github.mdstoy.stepchart.model.object.Arrow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,14 +10,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class ArrowContainer {
+public class ArrowGenerator {
 
     private Map<Direction, Arrow> baseArrows = new HashMap<>();
 
     private ImageConfiguration imageConfig;
 
     @Autowired
-    public ArrowContainer(ImageConfiguration imageConfig) throws IOException{
+    public ArrowGenerator(ImageConfiguration imageConfig) throws IOException{
         this.imageConfig = imageConfig;
         setup();
     }
@@ -44,13 +42,13 @@ public class ArrowContainer {
         baseArrows.put(Direction.RIGHT, right);
     }
 
-    public Arrow getArrow(Direction direction) {
+    private Arrow getNewArrow(Direction direction) {
         return baseArrows.get(direction).clone();
     }
 
-    public Arrow getArrow(Direction direction, Note note) {
-        Arrow arrow = getArrow(direction).clone();
-        switch (note) {
+    public Arrow getArrow(ArrowLocation location) {
+        Arrow arrow = getNewArrow(location.direction).clone();
+        switch (location.note) {
             case QUARTER:
                 arrow.changeColor(255, 0, 0);
             case EIGHTH:
@@ -63,6 +61,6 @@ public class ArrowContainer {
                 // FIXME : 何色？
                 arrow.changeColor(0, 0, 0);
         }
-        return baseArrows.get(direction);
+        return arrow;
     }
 }

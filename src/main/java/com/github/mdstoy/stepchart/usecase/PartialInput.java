@@ -1,6 +1,6 @@
 package com.github.mdstoy.stepchart.usecase;
 
-import com.github.mdstoy.stepchart.ArrowContainer;
+import com.github.mdstoy.stepchart.model.object.ArrowContainer;
 import com.github.mdstoy.stepchart.model.chart.StepChart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
