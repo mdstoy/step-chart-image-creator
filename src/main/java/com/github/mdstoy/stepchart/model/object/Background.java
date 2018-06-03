@@ -12,6 +12,7 @@ import java.util.stream.IntStream;
 // FIXME : こうなると Background という名前があれやな
 public class Background {
     BufferedImage image;
+    private BufferedImage result;
     private Graphics2D graphics;
 
     private Background(String imagePath) throws IOException{
@@ -32,7 +33,7 @@ public class Background {
 
     public void output() throws IOException {
         // FIXME : decide output destination
-        ImageIO.write(image, "png", new File("/tmp/" + System.currentTimeMillis() + ".png"));
+        ImageIO.write(result, "png", new File("/tmp/" + System.currentTimeMillis() + ".png"));
     }
 
     // TODO : 四分以外を表現せないかん
@@ -51,7 +52,7 @@ public class Background {
     }
 
     public void extend(int size) {
-        BufferedImage result = new BufferedImage(image.getWidth(), image.getHeight() * size, BufferedImage.TYPE_INT_RGB);
+        result = new BufferedImage(image.getWidth(), image.getHeight() * size, BufferedImage.TYPE_INT_RGB);
         graphics = result.createGraphics();
         IntStream.range(0, size)
                 .forEach(i -> graphics.drawImage(image, 0, image.getHeight() * i, null));
