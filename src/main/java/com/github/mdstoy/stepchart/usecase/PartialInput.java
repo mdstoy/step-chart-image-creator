@@ -1,7 +1,7 @@
 package com.github.mdstoy.stepchart.usecase;
 
-import com.github.mdstoy.stepchart.model.object.ArrowContainer;
 import com.github.mdstoy.stepchart.model.chart.StepChart;
+import com.github.mdstoy.stepchart.model.object.ImageContainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +14,11 @@ import java.nio.file.Paths;
 @Service
 public class PartialInput {
 
-    private ArrowContainer arrowContainer;
+    private ImageContainer imageContainer;
 
     @Autowired
-    public PartialInput(ArrowContainer arrowContainer) {
-        this.arrowContainer = arrowContainer;
+    public PartialInput(ImageContainer imageContainer) {
+        this.imageContainer = imageContainer;
     }
 
     public void run(String[] args) throws FileNotFoundException {
@@ -35,7 +35,7 @@ public class PartialInput {
 
         try {
             StepChart stepChart = StepChart.of(path);
-            stepChart.createImage();
+            stepChart.createImage(imageContainer);
 
         } catch (IOException e) {
             e.printStackTrace();

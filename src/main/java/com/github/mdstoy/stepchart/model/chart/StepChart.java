@@ -1,5 +1,8 @@
 package com.github.mdstoy.stepchart.model.chart;
 
+import com.github.mdstoy.stepchart.model.object.Background;
+import com.github.mdstoy.stepchart.model.object.ImageContainer;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -39,9 +42,9 @@ public class StepChart {
         );
     }
 
-    public void createImage() {
-        System.out.println("createImage");
-        System.out.println(musicalBars.toString());
+    public void createImage(ImageContainer imageContainer) throws IOException{
+        Background background = imageContainer.getBackground(musicalBars.size());
+        background.output();
     }
 
     @Override
