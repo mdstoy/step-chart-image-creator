@@ -1,11 +1,13 @@
 package com.github.mdstoy.stepchart.model.chart;
 
+import com.github.mdstoy.stepchart.model.object.Background;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MusicalBar {
 
-    private List<ArrowAttribute> attributes;
+    List<ArrowAttribute> attributes;
 
     private MusicalBar(List<ArrowAttribute> attributes) {
         this.attributes = attributes;
@@ -33,6 +35,11 @@ public class MusicalBar {
 
         //FIXME
         return new MusicalBar(attributes);
+    }
+
+    void createImage(Background background) {
+        // FIXME : ArrowAttribute の設計
+        // attributes.stream().forEach(arrowAttribute -> background.put(.............));
     }
 
     @Override

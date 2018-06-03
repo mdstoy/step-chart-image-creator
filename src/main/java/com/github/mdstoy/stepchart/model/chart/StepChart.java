@@ -44,6 +44,8 @@ public class StepChart {
 
     public void createImage(ImageContainer imageContainer) throws IOException{
         Background background = imageContainer.getBackground(musicalBars.size());
+        musicalBars.stream()
+                .forEach(musicalBar -> musicalBar.createImage(background));
         background.output();
     }
 

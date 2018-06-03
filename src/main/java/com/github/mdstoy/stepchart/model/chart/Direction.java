@@ -15,6 +15,10 @@ public enum Direction {
         this.position = position;
     }
 
+    public int getPosition() {
+        return position;
+    }
+
     public static Direction of(int column) {
         return Arrays.stream(values())
                 .filter(dir -> dir.position == column % 4)

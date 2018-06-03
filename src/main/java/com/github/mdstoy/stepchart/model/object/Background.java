@@ -1,5 +1,6 @@
 package com.github.mdstoy.stepchart.model.object;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 
 import javax.imageio.ImageIO;
@@ -9,11 +10,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.stream.IntStream;
 
-// FIXME : こうなると Background という名前があれやな
+// FIXME : こうなると Background という名前と立ち位置がおかしい
 public class Background {
     BufferedImage image;
     private BufferedImage result;
     private Graphics2D graphics;
+
+    // FIXME : これ・・・
+    @Autowired
+    private ArrowContainer arrowContainer;
 
     private Background(String imagePath) throws IOException{
         try {
@@ -38,9 +43,11 @@ public class Background {
 
     // TODO : 四分以外を表現せないかん
     // FIXME : 出力先の指定方法
-    public void put(Arrow arrow, int measure, int beat, int position) {
+    public void put(ArrowLocation location, int measure, int beat) {
         // TODO : 場所に合わせて色と向きを変えなきゃいかん
-        puta(arrow, (measure - 1) * image.getHeight() + (beat - 1) * image.getWidth(), position * image.getWidth());
+        Arrow arrow = arrowContainer.getArrow(location);
+        puta(arrow, (measure - 1) * image.getHeight() + (beat - 1) * image.getWidth(),
+                location.direction.getPosition() * image.getWidth());
     }
 
     private void puta(Arrow arrow, int x, int y) {
