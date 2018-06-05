@@ -15,6 +15,14 @@ public class Position {
         return new Position(position, resolution);
     }
 
+    public int getPosition() {
+        return position;
+    }
+
+    public int getResolution() {
+        return resolution;
+    }
+
     @Override
     public String toString() {
         return String.format("position [%d], resolution [%d]", position, resolution);

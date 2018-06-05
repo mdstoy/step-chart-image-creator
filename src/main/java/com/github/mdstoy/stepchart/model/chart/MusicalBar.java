@@ -1,5 +1,6 @@
 package com.github.mdstoy.stepchart.model.chart;
 
+import com.github.mdstoy.stepchart.model.object.ArrowLocation;
 import com.github.mdstoy.stepchart.model.object.Background;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class MusicalBar {
                     // FIXME : 4分と8分しかない
                     Note note = (index % (resolution / 4)) == 0 ? Note.QUARTER : Note.EIGHTH;
                     ArrowAttribute attribute = ArrowAttribute.of(Position.of(index, resolution),
-                            Direction.of(column), Side.of(column), note);
+                            Side.of(column), ArrowLocation.of(Direction.of(column), note));
                     attributes.add(attribute);
                 }
             }
@@ -39,7 +40,7 @@ public class MusicalBar {
 
     void createImage(Background background) {
         // FIXME : ArrowAttribute の設計
-        //attributes.stream().forEach(arrowAttribute -> background.put(arrowAttribute));
+        attributes.stream().forEach(arrowAttribute -> background.put(arrowAttribute));
     }
 
     @Override

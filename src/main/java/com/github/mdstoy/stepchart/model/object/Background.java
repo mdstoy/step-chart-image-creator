@@ -1,6 +1,7 @@
 package com.github.mdstoy.stepchart.model.object;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.github.mdstoy.stepchart.model.chart.ArrowAttribute;
+import com.github.mdstoy.stepchart.model.chart.Position;
 import org.springframework.core.io.ClassPathResource;
 
 import javax.imageio.ImageIO;
@@ -16,11 +17,10 @@ public class Background {
     private BufferedImage result;
     private Graphics2D graphics;
 
-    // FIXME : これ・・・
-    @Autowired
     private ArrowContainer arrowContainer;
 
-    private Background(String imagePath) throws IOException{
+    private Background(String imagePath, ArrowContainer arrowContainer) throws IOException{
+        this.arrowContainer = arrowContainer;
         try {
             this.image = ImageIO.read(new ClassPathResource(imagePath).getFile());
             // 読み込んだイメージを操作できるように
@@ -29,29 +29,41 @@ public class Background {
         } catch (IOException ioe) {
             throw new IOException(String.format("failed create image. [%s]", imagePath), ioe);
         }
-
     }
 
-    public static Background of(String imagePath) throws IOException{
-        return new Background(imagePath);
+    public static Background of(String imagePath, ArrowContainer arrowContainer) throws IOException{
+        return new Background(imagePath, arrowContainer);
     }
 
     public void output() throws IOException {
         // FIXME : decide output destination
+        dispose();
         ImageIO.write(result, "png", new File("/tmp/" + System.currentTimeMillis() + ".png"));
     }
 
     // TODO : 四分以外を表現せないかん
     // FIXME : 出力先の指定方法
-    public void put(ArrowLocation location, int measure, int beat) {
-        // TODO : 場所に合わせて色と向きを変えなきゃいかん
+    public void put(ArrowAttribute arrowAttribute) {
+        ArrowLocation location = arrowAttribute.getLocation();
+        Position position = arrowAttribute.getPosition();
         Arrow arrow = arrowContainer.getArrow(location);
-        puta(arrow, (measure - 1) * image.getHeight() + (beat - 1) * image.getWidth(),
-                location.direction.getPosition() * image.getWidth());
+        // FIXME : magic number
+        puta(arrow,
+                location.direction.getPosition() * 48
+                        + arrowAttribute.getSide().getValue() * 48,
+                position.getPosition() * image.getHeight() / position.getResolution());
     }
 
     private void puta(Arrow arrow, int x, int y) {
-        graphics.drawImage(arrow.image, x, y, null);
+        System.out.printf("%s, %d, %d\n", arrow.image, x, y);
+        Arrow a = null;
+        try {
+            a = Arrow.of("image/down.png");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        graphics.drawImage(a.image, x, y, null);
+        //graphics.drawImage(arrow.image, x, y, null);
     }
 
     public void dispose() {

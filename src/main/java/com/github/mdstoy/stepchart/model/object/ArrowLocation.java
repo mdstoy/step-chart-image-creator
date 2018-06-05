@@ -8,4 +8,13 @@ public class ArrowLocation {
     Direction direction;
 
     Note note;
+
+    private ArrowLocation(Direction direction, Note note) {
+        this.direction = direction;
+        this.note = note;
+    }
+
+    public static ArrowLocation of(Direction direction, Note note) {
+        return new ArrowLocation(direction, note);
+    }
 }

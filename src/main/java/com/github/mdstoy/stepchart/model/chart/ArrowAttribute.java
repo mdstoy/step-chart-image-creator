@@ -1,30 +1,39 @@
 package com.github.mdstoy.stepchart.model.chart;
 
-public class ArrowAttribute {
+import com.github.mdstoy.stepchart.model.object.ArrowLocation;
 
-    // FIXME : これをどう作るか
+public class ArrowAttribute {
 
     Position position;
 
-    Direction direction;
-
     Side side;
 
-    Note note;
+    ArrowLocation location;
 
-    private ArrowAttribute(Position position, Direction direction, Side side, Note note) {
+    private ArrowAttribute(Position position, Side side, ArrowLocation location) {
         this.position = position;
-        this.direction = direction;
         this.side = side;
-        this.note = note;
+        this.location = location;
     }
 
-    public static ArrowAttribute of(Position position, Direction direction, Side side, Note note) {
-        return new ArrowAttribute(position, direction, side, note);
+    public static ArrowAttribute of(Position position, Side side, ArrowLocation location) {
+        return new ArrowAttribute(position, side, location);
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public Side getSide() {
+        return side;
+    }
+
+    public ArrowLocation getLocation() {
+        return location;
     }
 
     @Override
     public String toString() {
-        return String.format("p[%s] d[%s] s[%s] n[%s]", position, direction, side, note);
+        return String.format("p[%s] s[%s] l[%s]", position, side, location);
     }
 }
