@@ -22,4 +22,19 @@ public class ArrowLocation {
     public String toString() {
         return String.format("d[%s] n[%s]", direction, note);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof ArrowLocation) {
+            ArrowLocation anotherLocation = (ArrowLocation) obj;
+            return anotherLocation.direction == direction && anotherLocation.note == note;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        String combined = direction.toString() + note.toString();
+        return combined.hashCode();
+    }
 }

@@ -49,7 +49,6 @@ public class Background {
         Position position = arrowAttribute.getPosition();
         Arrow arrow = arrowContainer.getArrow(location);
         // FIXME : magic number
-        System.out.println(arrowAttribute);
         puta(arrow,
                 location.direction.getPosition() * 48
                         + arrowAttribute.getSide().getValue() * 48 * 4,
@@ -57,7 +56,6 @@ public class Background {
     }
 
     private void puta(Arrow arrow, int x, int y) {
-        System.out.printf("%d, %d", x, y);
         graphics.drawImage(arrow.image, x, y, null);
     }
 
