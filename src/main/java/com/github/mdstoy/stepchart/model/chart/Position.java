@@ -2,17 +2,21 @@ package com.github.mdstoy.stepchart.model.chart;
 
 public class Position {
 
-    int measure;
+    int position;
 
-    Note note;
+    int resolution;
 
-    public Position(int measure, Note note) {
-        this.measure = measure;
-        this.note = note;
+    private Position(int position, int resolution) {
+        this.position = position;
+        this.resolution = resolution;
+    }
+
+    public static Position of(int position, int resolution) {
+        return new Position(position, resolution);
     }
 
     @Override
     public String toString() {
-        return String.format("measure [%d], note [%s]", measure, note);
+        return String.format("position [%d], resolution [%d]", position, resolution);
     }
 }

@@ -26,8 +26,8 @@ public class MusicalBar {
                 if (line.charAt(column) != '0') {
                     // FIXME : 4分と8分しかない
                     Note note = (index % (resolution / 4)) == 0 ? Note.QUARTER : Note.EIGHTH;
-                    Position position = new Position(index / (resolution / 4), note);
-                    ArrowAttribute attribute = new ArrowAttribute(position, Direction.of(column), Side.of(column));
+                    ArrowAttribute attribute = ArrowAttribute.of(Position.of(index, resolution),
+                            Direction.of(column), Side.of(column), note);
                     attributes.add(attribute);
                 }
             }
@@ -39,7 +39,7 @@ public class MusicalBar {
 
     void createImage(Background background) {
         // FIXME : ArrowAttribute の設計
-        // attributes.stream().forEach(arrowAttribute -> background.put(.............));
+        //attributes.stream().forEach(arrowAttribute -> background.put(arrowAttribute));
     }
 
     @Override
