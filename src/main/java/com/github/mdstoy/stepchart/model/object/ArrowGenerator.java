@@ -39,8 +39,6 @@ public class ArrowGenerator {
         Arrow right = down.clone();
         down.rotate(270);
         baseArrows.put(Direction.RIGHT, right);
-
-        System.out.printf("setuppppppppppppppppppppp\n%s\n", baseArrows);
     }
 
     private Arrow getNewArrow(Direction direction) {
@@ -52,14 +50,17 @@ public class ArrowGenerator {
         switch (location.note) {
             case QUARTER:
                 arrow.changeColor(255, 0, 0);
+                break;
             case EIGHTH:
                 arrow.changeColor(0, 0, 255);
+                break;
             case SIXTEENTH:
                 arrow.changeColor(0, 255, 255);
+                break;
             case TRIPLET:
                 arrow.changeColor(0, 255, 0);
+                break;
             case OTHERS:
-                // FIXME : 何色？
                 arrow.changeColor(0, 0, 0);
         }
         return arrow;

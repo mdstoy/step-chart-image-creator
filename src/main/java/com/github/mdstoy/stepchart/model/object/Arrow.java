@@ -40,7 +40,6 @@ public class Arrow implements Cloneable{
     }
 
     public void changeColor(int r, int g, int b) {
-        /*
         for(int i = 0; i < image.getHeight(); ++i) {
             for(int j = 0; j < image.getWidth(); ++j) {
                 if (image.getRGB(i, j) == -16777216) {
@@ -50,7 +49,6 @@ public class Arrow implements Cloneable{
                 }
             }
         }
-        */
     }
 
     public void rotate(int angle) {
