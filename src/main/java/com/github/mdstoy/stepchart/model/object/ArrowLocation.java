@@ -17,4 +17,9 @@ public class ArrowLocation {
     public static ArrowLocation of(Direction direction, Note note) {
         return new ArrowLocation(direction, note);
     }
+
+    @Override
+    public String toString() {
+        return String.format("d[%s] n[%s]", direction, note);
+    }
 }

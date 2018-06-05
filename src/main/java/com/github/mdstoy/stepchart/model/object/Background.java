@@ -44,18 +44,20 @@ public class Background {
 
     // TODO : 四分以外を表現せないかん
     // FIXME : 出力先の指定方法
-    public void put(ArrowAttribute arrowAttribute) {
+    public void put(ArrowAttribute arrowAttribute, int measure) {
         ArrowLocation location = arrowAttribute.getLocation();
         Position position = arrowAttribute.getPosition();
         Arrow arrow = arrowContainer.getArrow(location);
         // FIXME : magic number
+        System.out.println(arrowAttribute);
         puta(arrow,
                 location.direction.getPosition() * 48
-                        + arrowAttribute.getSide().getValue() * 48,
-                position.getPosition() * image.getHeight() / position.getResolution());
+                        + arrowAttribute.getSide().getValue() * 48 * 4,
+                (position.getPosition() * image.getHeight() / position.getResolution()) + (measure * image.getHeight()));
     }
 
     private void puta(Arrow arrow, int x, int y) {
+        System.out.printf("%d, %d", x, y);
         graphics.drawImage(arrow.image, x, y, null);
     }
 

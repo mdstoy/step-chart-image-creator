@@ -29,15 +29,15 @@ public class ArrowGenerator {
         baseArrows.put(Direction.DOWN, down);
 
         Arrow left = down.clone();
-        down.rotate(90);
+        left.rotate(90);
         baseArrows.put(Direction.LEFT, left);
 
         Arrow up = down.clone();
-        down.rotate(180);
+        up.rotate(180);
         baseArrows.put(Direction.UP, up);
 
         Arrow right = down.clone();
-        down.rotate(270);
+        right.rotate(270);
         baseArrows.put(Direction.RIGHT, right);
     }
 
