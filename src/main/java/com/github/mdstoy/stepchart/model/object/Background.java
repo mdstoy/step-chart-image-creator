@@ -2,6 +2,7 @@ package com.github.mdstoy.stepchart.model.object;
 
 import com.github.mdstoy.stepchart.model.chart.ArrowAttribute;
 import com.github.mdstoy.stepchart.model.chart.Position;
+import com.github.mdstoy.stepchart.model.chart.Style;
 import org.springframework.core.io.ClassPathResource;
 
 import javax.imageio.ImageIO;
@@ -55,26 +56,25 @@ public class Background {
     }
 
     private void puta(Arrow arrow, int x, int y) {
-        System.out.printf("%s, %d, %d\n", arrow.image, x, y);
-        Arrow a = null;
-        try {
-            a = Arrow.of("image/down.png");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        graphics.drawImage(a.image, x, y, null);
-        //graphics.drawImage(arrow.image, x, y, null);
+        graphics.drawImage(arrow.image, x, y, null);
     }
 
     public void dispose() {
         graphics.dispose();
     }
 
-    public void extend(int size) {
-        result = new BufferedImage(image.getWidth(), image.getHeight() * size, BufferedImage.TYPE_INT_RGB);
+    public void extend(int measures, Style style) {
+        result = new BufferedImage(image.getWidth() * (style == Style.DOUBLE ? 2 : 1),
+                image.getHeight() * measures, BufferedImage.TYPE_INT_RGB);
         graphics = result.createGraphics();
-        IntStream.range(0, size)
-                .forEach(i -> graphics.drawImage(image, 0, image.getHeight() * i, null));
+        // FIXME : 雑すぎる
+        IntStream.range(0, measures)
+                .forEach(i -> {
+                    graphics.drawImage(image, 0, image.getHeight() * i, null);
+                    if (style == Style.DOUBLE) {
+                        graphics.drawImage(image, image.getWidth(), image.getHeight() * i, null);
+                    }
+                });
     }
 
 

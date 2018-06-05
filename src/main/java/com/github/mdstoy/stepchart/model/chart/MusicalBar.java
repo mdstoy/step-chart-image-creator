@@ -10,7 +10,7 @@ public class MusicalBar {
 
     List<ArrowAttribute> attributes;
 
-    private MusicalBar(List<ArrowAttribute> attributes) {
+    private MusicalBar(List<ArrowAttribute> attributes, Style style) {
         this.attributes = attributes;
     }
 
@@ -34,8 +34,7 @@ public class MusicalBar {
             }
         }
 
-        //FIXME
-        return new MusicalBar(attributes);
+        return new MusicalBar(attributes, Style.of(width));
     }
 
     void createImage(Background background) {
