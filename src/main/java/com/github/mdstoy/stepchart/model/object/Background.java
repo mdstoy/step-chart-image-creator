@@ -76,13 +76,4 @@ public class Background {
                     }
                 });
     }
-
-
-    /*
-
-            // 変換元 -> 変換先
-            arrow.changeColor(255, 255, 0);
-            graphics.drawImage(arrow.rotate(90), 92, 48, null);
-            graphics.drawImage(arrow.rotate(180), 48, 70, null);
-     */
 }

@@ -26,7 +26,6 @@ public class ArrowGenerator {
     private void setup() throws IOException{
         Arrow down = Arrow.of(imageConfig.getArrow());
 
-        // FIXME : model の定義がおかしい？
         baseArrows.put(Direction.DOWN, down);
 
         Arrow left = down.clone();
@@ -40,6 +39,8 @@ public class ArrowGenerator {
         Arrow right = down.clone();
         down.rotate(270);
         baseArrows.put(Direction.RIGHT, right);
+
+        System.out.printf("setuppppppppppppppppppppp\n%s\n", baseArrows);
     }
 
     private Arrow getNewArrow(Direction direction) {
@@ -47,7 +48,7 @@ public class ArrowGenerator {
     }
 
     public Arrow getArrow(ArrowLocation location) {
-        Arrow arrow = getNewArrow(location.direction).clone();
+        Arrow arrow = getNewArrow(location.direction);
         switch (location.note) {
             case QUARTER:
                 arrow.changeColor(255, 0, 0);
