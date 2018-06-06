@@ -21,10 +21,4 @@ public class ArrowContainer {
     public Arrow getArrow(ArrowLocation location) {
         return arrowCache.computeIfAbsent(location, arrowGenerator::getArrow);
     }
-
-    private Arrow getNewArrow(ArrowLocation location) {
-        Arrow newArrow = arrowGenerator.getArrow(location);
-        arrowCache.put(location, newArrow);
-        return newArrow;
-    }
 }

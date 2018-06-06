@@ -38,7 +38,6 @@ public class MusicalBar {
     }
 
     void createImage(Background background, int measure) {
-        // FIXME : ArrowAttribute の設計
         attributes.stream().forEach(arrowAttribute -> background.put(arrowAttribute, measure));
     }
 

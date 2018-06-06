@@ -37,16 +37,13 @@ public class Background {
         ImageIO.write(result, "png", new File("/tmp/" + System.currentTimeMillis() + ".png"));
     }
 
-    // TODO : 四分以外を表現せないかん
-    // FIXME : 出力先の指定方法
     public void put(ArrowAttribute arrowAttribute, int measure) {
         ArrowLocation location = arrowAttribute.getLocation();
         Position position = arrowAttribute.getPosition();
         Arrow arrow = arrowContainer.getArrow(location);
-        // FIXME : magic number
         puta(arrow,
-                location.direction.getPosition() * 48
-                        + arrowAttribute.getSide().getValue() * 48 * 4,
+                location.direction.getPosition() * arrow.image.getWidth()
+                        + arrowAttribute.getSide().getValue() * arrow.image.getWidth() * 4,
                 (position.getPosition() * image.getHeight() / position.getResolution()) + (measure * image.getHeight()));
     }
 
