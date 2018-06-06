@@ -30,8 +30,9 @@ public class Arrow implements Cloneable{
     }
 
     private static Arrow of(BufferedImage src) {
-        BufferedImage newImage = src.getSubimage(0, 0, src.getWidth(), src.getHeight());
-        return new Arrow(newImage);
+        BufferedImage dist = new BufferedImage(src.getWidth(), src.getHeight(), src.getType());
+        dist.setData(src.getData());
+        return new Arrow(dist);
     }
 
     @Override

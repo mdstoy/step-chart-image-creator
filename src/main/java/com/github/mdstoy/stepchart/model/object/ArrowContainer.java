@@ -19,13 +19,7 @@ public class ArrowContainer {
     }
 
     public Arrow getArrow(ArrowLocation location) {
-        System.out.println(arrowCache.containsKey(location));
-        //return arrowCache.getOrDefault(location, getNewArrow(location));
-        Arrow newArrow = arrowCache.get(location);
-        if(newArrow == null) {
-            newArrow = getNewArrow(location);
-        }
-        return newArrow;
+        return arrowCache.computeIfAbsent(location, arrowGenerator::getArrow);
     }
 
     private Arrow getNewArrow(ArrowLocation location) {
