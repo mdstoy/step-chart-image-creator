@@ -16,7 +16,6 @@ import java.util.stream.IntStream;
 public class Background {
     BufferedImage image;
     private BufferedImage result;
-    private Graphics2D graphics;
 
     private ArrowContainer arrowContainer;
 
@@ -24,9 +23,6 @@ public class Background {
         this.arrowContainer = arrowContainer;
         try {
             this.image = ImageIO.read(new ClassPathResource(imagePath).getFile());
-            // 読み込んだイメージを操作できるように
-            graphics = image.createGraphics();
-
         } catch (IOException ioe) {
             throw new IOException(String.format("failed create image. [%s]", imagePath), ioe);
         }
@@ -38,7 +34,6 @@ public class Background {
 
     public void output() throws IOException {
         // FIXME : decide output destination
-        dispose();
         ImageIO.write(result, "png", new File("/tmp/" + System.currentTimeMillis() + ".png"));
     }
 
@@ -56,17 +51,13 @@ public class Background {
     }
 
     private void puta(Arrow arrow, int x, int y) {
-        graphics.drawImage(arrow.image, x, y, null);
-    }
-
-    public void dispose() {
-        graphics.dispose();
+        result.getGraphics().drawImage(arrow.image, x, y, null);
     }
 
     public void extend(int measures, Style style) {
         result = new BufferedImage(image.getWidth() * (style == Style.DOUBLE ? 2 : 1),
                 image.getHeight() * measures, BufferedImage.TYPE_INT_RGB);
-        graphics = result.createGraphics();
+        Graphics2D graphics = result.createGraphics();
         // FIXME : 雑すぎる
         IntStream.range(0, measures)
                 .forEach(i -> {
