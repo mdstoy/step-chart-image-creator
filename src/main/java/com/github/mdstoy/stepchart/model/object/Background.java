@@ -7,7 +7,9 @@ import org.springframework.core.io.ClassPathResource;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.AreaAveragingScaleFilter;
 import java.awt.image.BufferedImage;
+import java.awt.image.FilteredImageSource;
 import java.io.File;
 import java.io.IOException;
 import java.util.stream.IntStream;
@@ -34,7 +36,19 @@ public class Background {
 
     public void output() throws IOException {
         // FIXME : decide output destination
+        scaleImage(0.5d);
         ImageIO.write(result, "png", new File("/tmp/" + System.currentTimeMillis() + ".png"));
+    }
+
+    private void scaleImage(double scale) {
+        Image dstImage = Toolkit.getDefaultToolkit().createImage(
+                new FilteredImageSource(
+                        result.getSource(),
+                        new AreaAveragingScaleFilter(
+                                (int) (result.getWidth() * scale), (int) (result.getHeight() * scale))));
+        result = new BufferedImage(
+                (int) (result.getWidth() * scale), (int) (result.getHeight() * scale), BufferedImage.TYPE_INT_RGB);
+        result.createGraphics().drawImage(dstImage, 0, 0, null);
     }
 
     public void put(ArrowAttribute arrowAttribute, int measure) {
