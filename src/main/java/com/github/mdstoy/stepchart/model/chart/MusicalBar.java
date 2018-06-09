@@ -1,7 +1,6 @@
 package com.github.mdstoy.stepchart.model.chart;
 
 import com.github.mdstoy.stepchart.model.object.ArrowLocation;
-import com.github.mdstoy.stepchart.model.object.Background;
 
 import java.util.ArrayList;
 import java.util.List;

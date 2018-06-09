@@ -35,6 +35,19 @@ public class Arrow implements Cloneable{
         return new Arrow(dist);
     }
 
+    public int getWidth() {
+        return image.getWidth();
+    }
+
+    public int getHeight() {
+        return image.getHeight();
+    }
+
+    // FIXME : Background を分離して、これは消せるようにする
+    public BufferedImage getImage() {
+        return image;
+    }
+
     @Override
     public Arrow clone() {
         return Arrow.of(image);

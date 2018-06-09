@@ -18,6 +18,11 @@ public class ArrowLocation {
         return new ArrowLocation(direction, note);
     }
 
+    // FIXME : Background を分離して、これは消せるようにする
+    public int getPosition() {
+        return direction.getPosition();
+    }
+
     @Override
     public String toString() {
         return String.format("d[%s] n[%s]", direction, note);

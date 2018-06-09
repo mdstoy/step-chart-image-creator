@@ -1,8 +1,8 @@
-package com.github.mdstoy.stepchart.model.object;
+package com.github.mdstoy.stepchart.model.chart;
 
-import com.github.mdstoy.stepchart.model.chart.ArrowAttribute;
-import com.github.mdstoy.stepchart.model.chart.Position;
-import com.github.mdstoy.stepchart.model.chart.Style;
+import com.github.mdstoy.stepchart.model.object.Arrow;
+import com.github.mdstoy.stepchart.model.object.ArrowContainer;
+import com.github.mdstoy.stepchart.model.object.ArrowLocation;
 import org.springframework.core.io.ClassPathResource;
 
 import javax.imageio.ImageIO;
@@ -56,13 +56,15 @@ public class Background {
         Position position = arrowAttribute.getPosition();
         Arrow arrow = arrowContainer.getArrow(location);
         puta(arrow,
-                location.direction.getPosition() * arrow.image.getWidth()
-                        + arrowAttribute.getSide().getValue() * arrow.image.getWidth() * 4,
+                // FIXME : このクラスを適切に分離したら、getLocation は不要になるはず
+                location.getPosition() * arrow.getWidth()
+                        + arrowAttribute.getSide().getValue() * arrow.getWidth() * 4,
                 (position.getPosition() * image.getHeight() / position.getResolution()) + (measure * image.getHeight()));
     }
 
     private void puta(Arrow arrow, int x, int y) {
-        result.getGraphics().drawImage(arrow.image, x, y, null);
+        // FIXME : このクラスを適切に分離したら、getImage は不要になるはず
+        result.getGraphics().drawImage(arrow.getImage(), x, y, null);
     }
 
     public void extend(int measures, Style style) {

@@ -1,6 +1,5 @@
 package com.github.mdstoy.stepchart.model.chart;
 
-import com.github.mdstoy.stepchart.model.object.Background;
 import com.github.mdstoy.stepchart.model.object.ImageContainer;
 
 import java.io.IOException;
