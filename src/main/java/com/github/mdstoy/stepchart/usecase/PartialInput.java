@@ -1,7 +1,8 @@
 package com.github.mdstoy.stepchart.usecase;
 
+import com.github.mdstoy.stepchart.model.chart.Background;
 import com.github.mdstoy.stepchart.model.chart.StepChart;
-import com.github.mdstoy.stepchart.model.object.ImageContainer;
+import com.github.mdstoy.stepchart.model.object.BackgroundContainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +15,11 @@ import java.nio.file.Paths;
 @Service
 public class PartialInput {
 
-    private ImageContainer imageContainer;
+    private BackgroundContainer backgroundContainer;
 
     @Autowired
-    public PartialInput(ImageContainer imageContainer) {
-        this.imageContainer = imageContainer;
+    public PartialInput(BackgroundContainer backgroundContainer) {
+        this.backgroundContainer = backgroundContainer;
     }
 
     public void run(String[] args) throws FileNotFoundException {
@@ -35,7 +36,9 @@ public class PartialInput {
 
         try {
             StepChart stepChart = StepChart.of(path);
-            stepChart.createImage(imageContainer);
+            Background background = backgroundContainer.getBackground(stepChart.getSize(), stepChart.getStyle());
+            stepChart.stream().forEach(arrowAttribute -> background.put(arrowAttribute));
+            background.output();
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -9,11 +9,11 @@ public class MusicalBar {
 
     List<ArrowAttribute> attributes;
 
-    private MusicalBar(List<ArrowAttribute> attributes, Style style) {
+    private MusicalBar(List<ArrowAttribute> attributes) {
         this.attributes = attributes;
     }
 
-    public static MusicalBar of(List<String> bar) {
+    public static MusicalBar of(Integer measure, List<String> bar) {
 
         final int resolution = bar.size();
         final int width = bar.get(0).length();
@@ -26,18 +26,18 @@ public class MusicalBar {
                 if (line.charAt(column) != '0') {
                     // FIXME : 4分と8分しかない
                     Note note = (index % (resolution / 4)) == 0 ? Note.QUARTER : Note.EIGHTH;
-                    ArrowAttribute attribute = ArrowAttribute.of(Position.of(index, resolution),
-                            Side.of(column), ArrowLocation.of(Direction.of(column), note));
+                    ArrowAttribute attribute = ArrowAttribute.of(
+                            measure,
+                            Position.of(index, resolution),
+                            Side.of(column),
+                            ArrowLocation.of(Direction.of(column), note)
+                    );
                     attributes.add(attribute);
                 }
             }
         }
 
-        return new MusicalBar(attributes, Style.of(width));
-    }
-
-    void createImage(Background background, int measure) {
-        attributes.stream().forEach(arrowAttribute -> background.put(arrowAttribute, measure));
+        return new MusicalBar(attributes);
     }
 
     @Override

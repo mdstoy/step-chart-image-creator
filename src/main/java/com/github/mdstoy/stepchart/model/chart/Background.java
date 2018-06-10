@@ -51,7 +51,7 @@ public class Background {
         result.createGraphics().drawImage(dstImage, 0, 0, null);
     }
 
-    public void put(ArrowAttribute arrowAttribute, int measure) {
+    public void put(ArrowAttribute arrowAttribute) {
         ArrowLocation location = arrowAttribute.getLocation();
         Position position = arrowAttribute.getPosition();
         Arrow arrow = arrowContainer.getArrow(location);
@@ -59,7 +59,8 @@ public class Background {
                 // FIXME : このクラスを適切に分離したら、getLocation は不要になるはず
                 location.getPosition() * arrow.getWidth()
                         + arrowAttribute.getSide().getValue() * arrow.getWidth() * 4,
-                (position.getPosition() * image.getHeight() / position.getResolution()) + (measure * image.getHeight()));
+                (position.getPosition() * image.getHeight() / position.getResolution())
+                        + (arrowAttribute.measure * image.getHeight()));
     }
 
     private void puta(Arrow arrow, int x, int y) {

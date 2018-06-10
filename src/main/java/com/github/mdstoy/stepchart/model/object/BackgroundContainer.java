@@ -8,12 +8,12 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-public class ImageContainer {
+public class BackgroundContainer {
 
     private BackgroundGenerator backgroundGenerator;
 
     @Autowired
-    public ImageContainer(BackgroundGenerator backgroundGenerator) {
+    public BackgroundContainer(BackgroundGenerator backgroundGenerator) {
         this.backgroundGenerator = backgroundGenerator;
     }
 

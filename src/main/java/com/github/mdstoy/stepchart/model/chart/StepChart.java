@@ -1,13 +1,14 @@
 package com.github.mdstoy.stepchart.model.chart;
 
-import com.github.mdstoy.stepchart.model.object.ImageContainer;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StepChart {
 
@@ -22,13 +23,14 @@ public class StepChart {
 
     public static StepChart of(Path path) throws IOException {
 
-        List<List<String>> bars = new ArrayList<>();
+        int measure = 0;
+        Map<Integer, List<String>> bars = new HashMap<>();
         List<String> bar = new ArrayList<>();
-        bars.add(bar);
+        bars.put(measure, bar);
         for (String line : Files.readAllLines(path)) {
             if (line.startsWith(",")) {
                 bar = new ArrayList<>();
-                bars.add(bar);
+                bars.put(++measure, bar);
                 continue;
             }
             if (line.endsWith(";")) {
@@ -38,21 +40,23 @@ public class StepChart {
             bar.add(line);
         }
 
-        return new StepChart(bars.stream()
-                .map(MusicalBar::of)
+        return new StepChart(bars.entrySet().stream()
+                .map(e -> MusicalBar.of(e.getKey(), e.getValue()))
                 .collect(Collectors.toList()),
                 Style.of(bar.get(0).length())
         );
     }
 
-    public void createImage(ImageContainer imageContainer) throws IOException{
-        Background background = imageContainer.getBackground(musicalBars.size(), style);
-        int measure = 0;
-        for (MusicalBar musicalBar : musicalBars) {
-            musicalBar.createImage(background, measure);
-            measure++;
-        }
-        background.output();
+    public Stream<ArrowAttribute> stream() {
+        return musicalBars.stream().flatMap(musicalBar -> musicalBar.attributes.stream());
+    }
+
+    public int getSize() {
+        return musicalBars.size();
+    }
+
+    public Style getStyle() {
+        return style;
     }
 
     @Override

@@ -4,20 +4,23 @@ import com.github.mdstoy.stepchart.model.object.ArrowLocation;
 
 public class ArrowAttribute {
 
+    Integer measure;
+
     Position position;
 
     Side side;
 
     ArrowLocation location;
 
-    private ArrowAttribute(Position position, Side side, ArrowLocation location) {
+    private ArrowAttribute(Integer measure, Position position, Side side, ArrowLocation location) {
+        this.measure = measure;
         this.position = position;
         this.side = side;
         this.location = location;
     }
 
-    public static ArrowAttribute of(Position position, Side side, ArrowLocation location) {
-        return new ArrowAttribute(position, side, location);
+    public static ArrowAttribute of(Integer measure, Position position, Side side, ArrowLocation location) {
+        return new ArrowAttribute(measure, position, side, location);
     }
 
     public Position getPosition() {
