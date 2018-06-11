@@ -37,7 +37,7 @@ public class PartialInput {
         try {
             StepChart stepChart = StepChart.of(path);
             Background background = backgroundGenerator.getBackground(stepChart.getSize(), stepChart.getStyle());
-            stepChart.stream().forEach(arrowAttribute -> background.put(arrowAttribute));
+            stepChart.forEach(arrowAttribute -> background.put(arrowAttribute));
             background.output();
 
         } catch (IOException e) {
