@@ -22,13 +22,13 @@ public class MusicalBar {
 
         for (int index = 0; index < resolution; ++index) {
             String line = bar.get(index);
+            Position position = Position.of(index, resolution);
+            Note note = Note.of(index, resolution);
             for (int column = 0; column < width; ++column) {
                 if (line.charAt(column) != '0') {
-                    // FIXME : 4分と8分しかない
-                    Note note = (index % (resolution / 4)) == 0 ? Note.QUARTER : Note.EIGHTH;
                     ArrowAttribute attribute = ArrowAttribute.of(
                             measure,
-                            Position.of(index, resolution),
+                            position,
                             Side.of(column),
                             ArrowLocation.of(Direction.of(column), note)
                     );
