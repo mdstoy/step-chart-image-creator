@@ -6,11 +6,8 @@ import com.github.mdstoy.stepchart.model.object.BackgroundGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 @Service
 public class PartialInput {
@@ -22,17 +19,7 @@ public class PartialInput {
         this.backgroundGenerator = backgroundGenerator;
     }
 
-    public void run(String[] args) throws FileNotFoundException {
-
-        if (args.length != 1) {
-            throw new IndexOutOfBoundsException("Required only one option is file path.");
-        }
-
-        Path path = Paths.get(args[0]);
-
-        if (Files.notExists(path)) {
-            throw new FileNotFoundException(String.format("File not found [%s]", path.toString()));
-        }
+    public void run(Path path) {
 
         try {
             StepChart stepChart = StepChart.of(path);
