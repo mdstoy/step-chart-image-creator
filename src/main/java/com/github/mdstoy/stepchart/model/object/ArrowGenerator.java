@@ -1,6 +1,7 @@
 package com.github.mdstoy.stepchart.model.object;
 
 import com.github.mdstoy.stepchart.config.ImageConfiguration;
+import com.github.mdstoy.stepchart.model.chart.ArrowLocation;
 import com.github.mdstoy.stepchart.model.chart.Direction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -46,8 +47,8 @@ public class ArrowGenerator {
     }
 
     public Arrow getArrow(ArrowLocation location) {
-        Arrow arrow = getNewArrow(location.direction);
-        switch (location.note) {
+        Arrow arrow = getNewArrow(location.getDirection());
+        switch (location.getNote()) {
             case QUARTER:
                 arrow.changeColor(255, 0, 0);
                 break;

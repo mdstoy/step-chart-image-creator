@@ -2,7 +2,6 @@ package com.github.mdstoy.stepchart.model.chart;
 
 import com.github.mdstoy.stepchart.model.object.Arrow;
 import com.github.mdstoy.stepchart.model.object.ArrowContainer;
-import com.github.mdstoy.stepchart.model.object.ArrowLocation;
 import org.springframework.core.io.ClassPathResource;
 
 import javax.imageio.ImageIO;
@@ -52,13 +51,12 @@ public class Background {
     }
 
     public void put(ArrowAttribute arrowAttribute) {
-        ArrowLocation location = arrowAttribute.getLocation();
-        Position position = arrowAttribute.getPosition();
+        ArrowLocation location = arrowAttribute.location;
+        Position position = arrowAttribute.position;
         Arrow arrow = arrowContainer.getArrow(location);
         puta(arrow,
-                // FIXME : このクラスを適切に分離したら、getLocation は不要になるはず
-                location.getPosition() * arrow.getWidth()
-                        + arrowAttribute.getSide().getValue() * arrow.getWidth() * 4,
+                location.getDirection().getPosition() * arrow.getWidth()
+                        + arrowAttribute.side.getValue() * arrow.getWidth() * 4,
                 (position.getPosition() * image.getHeight() / position.getResolution())
                         + (arrowAttribute.measure * image.getHeight()));
     }

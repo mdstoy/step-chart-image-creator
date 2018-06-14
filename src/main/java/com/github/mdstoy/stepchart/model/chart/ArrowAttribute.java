@@ -1,7 +1,5 @@
 package com.github.mdstoy.stepchart.model.chart;
 
-import com.github.mdstoy.stepchart.model.object.ArrowLocation;
-
 public class ArrowAttribute {
 
     Integer measure;
@@ -21,18 +19,6 @@ public class ArrowAttribute {
 
     public static ArrowAttribute of(Integer measure, Position position, Side side, ArrowLocation location) {
         return new ArrowAttribute(measure, position, side, location);
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-
-    public Side getSide() {
-        return side;
-    }
-
-    public ArrowLocation getLocation() {
-        return location;
     }
 
     @Override

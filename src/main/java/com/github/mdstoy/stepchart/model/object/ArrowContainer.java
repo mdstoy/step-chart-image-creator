@@ -1,5 +1,6 @@
 package com.github.mdstoy.stepchart.model.object;
 
+import com.github.mdstoy.stepchart.model.chart.ArrowLocation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

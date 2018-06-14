@@ -1,7 +1,4 @@
-package com.github.mdstoy.stepchart.model.object;
-
-import com.github.mdstoy.stepchart.model.chart.Direction;
-import com.github.mdstoy.stepchart.model.chart.Note;
+package com.github.mdstoy.stepchart.model.chart;
 
 public class ArrowLocation {
 
@@ -18,28 +15,31 @@ public class ArrowLocation {
         return new ArrowLocation(direction, note);
     }
 
-    // FIXME : Background を分離して、これは消せるようにする
-    public int getPosition() {
-        return direction.getPosition();
-    }
-
     @Override
     public String toString() {
-        return String.format("d[%s] n[%s]", direction, note);
+        return String.format("d[%s] n[%s]", getDirection(), getNote());
     }
 
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof ArrowLocation) {
             ArrowLocation anotherLocation = (ArrowLocation) obj;
-            return anotherLocation.direction == direction && anotherLocation.note == note;
+            return anotherLocation.getDirection() == getDirection() && anotherLocation.getNote() == getNote();
         }
         return false;
     }
 
     @Override
     public int hashCode() {
-        String combined = direction.toString() + note.toString();
+        String combined = getDirection().toString() + getNote().toString();
         return combined.hashCode();
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public Note getNote() {
+        return note;
     }
 }
