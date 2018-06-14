@@ -1,4 +1,7 @@
 image:
-    arrow: "image/down.png"
+    left: "image/left.png"
+    down: "image/down.png"
+    up: "image/up.png"
+    right: "image/right.png"
     background: "image/back.png"
 

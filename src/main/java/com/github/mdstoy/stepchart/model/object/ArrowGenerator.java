@@ -23,23 +23,11 @@ public class ArrowGenerator {
         setup();
     }
 
-    // FIXME : これじゃない
     private void setup() throws IOException{
-        Arrow down = Arrow.of(imageConfig.getArrow());
-
-        baseArrows.put(Direction.DOWN, down);
-
-        Arrow left = down.clone();
-        left.rotate(90);
-        baseArrows.put(Direction.LEFT, left);
-
-        Arrow up = down.clone();
-        up.rotate(180);
-        baseArrows.put(Direction.UP, up);
-
-        Arrow right = down.clone();
-        right.rotate(270);
-        baseArrows.put(Direction.RIGHT, right);
+        baseArrows.put(Direction.LEFT, Arrow.of(imageConfig.getLeft()));
+        baseArrows.put(Direction.DOWN, Arrow.of(imageConfig.getDown()));
+        baseArrows.put(Direction.UP, Arrow.of(imageConfig.getUp()));
+        baseArrows.put(Direction.RIGHT, Arrow.of(imageConfig.getRight()));
     }
 
     private Arrow getNewArrow(Direction direction) {
