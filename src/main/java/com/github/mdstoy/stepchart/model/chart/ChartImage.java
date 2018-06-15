@@ -1,5 +1,9 @@
-package com.github.mdstoy.stepchart.model.chart;
+package com.github.mdstoy.stepchart.model.object;
 
+import com.github.mdstoy.stepchart.model.chart.ArrowAttribute;
+import com.github.mdstoy.stepchart.model.chart.ArrowLocation;
+import com.github.mdstoy.stepchart.model.chart.Position;
+import com.github.mdstoy.stepchart.model.chart.Style;
 import com.github.mdstoy.stepchart.model.object.Arrow;
 import com.github.mdstoy.stepchart.model.object.ArrowContainer;
 import com.github.mdstoy.stepchart.model.object.Background;
@@ -50,18 +54,18 @@ public class ChartImage {
     }
 
     public void put(ArrowAttribute arrowAttribute) {
-        ArrowLocation location = arrowAttribute.location;
-        Position position = arrowAttribute.position;
+        ArrowLocation location = arrowAttribute.getLocation();
+        Position position = arrowAttribute.getPosition();
         Arrow arrow = arrowContainer.getArrow(location);
         puta(arrow,
                 location.getDirection().getPosition() * arrow.getWidth()
-                        + arrowAttribute.side.getValue() * arrow.getWidth() * 4,
+                        + arrowAttribute.getSide().getValue() * arrow.getWidth() * 4,
                 (position.getPosition() * background.getHeight() / position.getResolution())
-                        + (arrowAttribute.measure * background.getHeight()));
+                        + (arrowAttribute.getMeasure() * background.getHeight()));
     }
 
     private void puta(Arrow arrow, int x, int y) {
-        result.getGraphics().drawImage(arrow.getImage(), x, y, null);
+        result.getGraphics().drawImage(arrow.image, x, y, null);
     }
 
     public void extend(int measures, Style style) {
@@ -71,9 +75,9 @@ public class ChartImage {
         // FIXME : 雑すぎる
         IntStream.range(0, measures)
                 .forEach(i -> {
-                    graphics.drawImage(background.getImage(), 0, background.getHeight() * i, null);
+                    graphics.drawImage(background.image, 0, background.getHeight() * i, null);
                     if (style == Style.DOUBLE) {
-                        graphics.drawImage(background.getImage(), background.getWidth(), background.getHeight() * i, null);
+                        graphics.drawImage(background.image, background.getWidth(), background.getHeight() * i, null);
                     }
                 });
     }

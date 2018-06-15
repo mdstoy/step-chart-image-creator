@@ -1,8 +1,6 @@
 package com.github.mdstoy.stepchart.model.object;
 
 import com.github.mdstoy.stepchart.config.ImageConfiguration;
-import com.github.mdstoy.stepchart.model.chart.ChartImage;
-import com.github.mdstoy.stepchart.model.chart.Style;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

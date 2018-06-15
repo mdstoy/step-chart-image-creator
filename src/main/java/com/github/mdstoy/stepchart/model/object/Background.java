@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class Background {
 
-    private BufferedImage image;
+    BufferedImage image;
 
     private Background(BufferedImage image) {
         this.image = image;
@@ -31,9 +31,5 @@ public class Background {
 
     public int getHeight() {
         return image.getHeight();
-    }
-
-    public BufferedImage getImage() {
-        return image;
     }
 }

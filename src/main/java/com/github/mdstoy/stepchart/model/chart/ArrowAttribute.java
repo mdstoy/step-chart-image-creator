@@ -21,6 +21,22 @@ public class ArrowAttribute {
         return new ArrowAttribute(measure, position, side, location);
     }
 
+    public Integer getMeasure() {
+        return measure;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public Side getSide() {
+        return side;
+    }
+
+    public ArrowLocation getLocation() {
+        return location;
+    }
+
     @Override
     public String toString() {
         return String.format("p[%s] s[%s] l[%s]", position, side, location);
