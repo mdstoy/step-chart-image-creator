@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class Arrow implements Cloneable{
 
-    BufferedImage image;
+    private BufferedImage image;
 
     private Arrow(String imagePath) throws IOException{
         try {
@@ -43,7 +43,7 @@ public class Arrow implements Cloneable{
         return image.getHeight();
     }
 
-    // FIXME : Background を分離して、これは消せるようにする
+    // FIXME : これ消したい
     public BufferedImage getImage() {
         return image;
     }
