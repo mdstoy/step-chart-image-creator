@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class Arrow implements Cloneable{
 
-    BufferedImage image;
+    private BufferedImage image;
 
     private Arrow(String imagePath) throws IOException{
         try {

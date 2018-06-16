@@ -9,13 +9,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class StepChart {
 
     private List<MusicalBar> musicalBars;
 
-    Style style;
+    private Style style;
 
     private StepChart(List<MusicalBar> musicalBars, Style style) {
         this.musicalBars = musicalBars;
