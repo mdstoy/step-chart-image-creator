@@ -44,13 +44,13 @@ public class ArrowGenerator {
                 arrow.changeColor(0, 0, 255);
                 break;
             case SIXTEENTH:
-                arrow.changeColor(0, 255, 255);
+                arrow.changeColor(255, 255, 0);
                 break;
             case TRIPLET:
                 arrow.changeColor(0, 255, 0);
                 break;
             case OTHERS:
-                arrow.changeColor(0, 0, 0);
+                arrow.changeColor(128, 255, 255);
         }
         return arrow;
     }
