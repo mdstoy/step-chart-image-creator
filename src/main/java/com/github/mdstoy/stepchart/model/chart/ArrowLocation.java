@@ -2,9 +2,9 @@ package com.github.mdstoy.stepchart.model.chart;
 
 public class ArrowLocation {
 
-    Direction direction;
+    private Direction direction;
 
-    Note note;
+    private Note note;
 
     private ArrowLocation(Direction direction, Note note) {
         this.direction = direction;
@@ -13,6 +13,14 @@ public class ArrowLocation {
 
     public static ArrowLocation of(Direction direction, Note note) {
         return new ArrowLocation(direction, note);
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public Note getNote() {
+        return note;
     }
 
     @Override
@@ -33,13 +41,5 @@ public class ArrowLocation {
     public int hashCode() {
         String combined = getDirection().toString() + getNote().toString();
         return combined.hashCode();
-    }
-
-    public Direction getDirection() {
-        return direction;
-    }
-
-    public Note getNote() {
-        return note;
     }
 }

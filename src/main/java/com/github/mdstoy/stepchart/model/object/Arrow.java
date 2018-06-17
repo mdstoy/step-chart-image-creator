@@ -3,14 +3,12 @@ package com.github.mdstoy.stepchart.model.object;
 import org.springframework.core.io.ClassPathResource;
 
 import javax.imageio.ImageIO;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class Arrow implements Cloneable{
 
-    BufferedImage image;
+    private BufferedImage image;
 
     private Arrow(String imagePath) throws IOException{
         try {
@@ -60,17 +58,7 @@ public class Arrow implements Cloneable{
         }
     }
 
-    public void rotate(int angle) {
-        // 変換の設定
-        AffineTransform at = new AffineTransform();
-        at.setToRotation(Math.toRadians(angle), image.getWidth() / 2, image.getHeight() / 2);
-        // 変換の実操作
-        AffineTransformOp op = new AffineTransformOp(at, AffineTransformOp.TYPE_BICUBIC);
-
-        // 書き出し用
-        BufferedImage newImage = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_ARGB);
-        op.filter(image, newImage);
-
-        this.image = newImage;
+    public BufferedImage getImage() {
+        return image;
     }
 }

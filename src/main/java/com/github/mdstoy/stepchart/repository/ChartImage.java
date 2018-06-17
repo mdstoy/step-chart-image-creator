@@ -1,4 +1,4 @@
-package com.github.mdstoy.stepchart.model.object;
+package com.github.mdstoy.stepchart.repository;
 
 import com.github.mdstoy.stepchart.model.chart.ArrowAttribute;
 import com.github.mdstoy.stepchart.model.chart.ArrowLocation;
@@ -9,8 +9,7 @@ import com.github.mdstoy.stepchart.model.object.ArrowContainer;
 import com.github.mdstoy.stepchart.model.object.Background;
 import com.github.mdstoy.stepchart.model.object.BackgroundGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -21,7 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.stream.IntStream;
 
-@Component
+@Repository
 public class ChartImage {
 
     private Background background;
@@ -65,7 +64,7 @@ public class ChartImage {
     }
 
     private void puta(Arrow arrow, int x, int y) {
-        result.getGraphics().drawImage(arrow.image, x, y, null);
+        result.getGraphics().drawImage(arrow.getImage(), x, y, null);
     }
 
     public void extend(int measures, Style style) {
@@ -75,9 +74,9 @@ public class ChartImage {
         // FIXME : 雑すぎる
         IntStream.range(0, measures)
                 .forEach(i -> {
-                    graphics.drawImage(background.image, 0, background.getHeight() * i, null);
+                    graphics.drawImage(background.getImage(), 0, background.getHeight() * i, null);
                     if (style == Style.DOUBLE) {
-                        graphics.drawImage(background.image, background.getWidth(), background.getHeight() * i, null);
+                        graphics.drawImage(background.getImage(), background.getWidth(), background.getHeight() * i, null);
                     }
                 });
     }

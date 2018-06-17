@@ -2,9 +2,9 @@ package com.github.mdstoy.stepchart.model.chart;
 
 public class Position {
 
-    int position;
+    private int position;
 
-    int resolution;
+    private int resolution;
 
     private Position(int position, int resolution) {
         this.position = position;

@@ -2,13 +2,13 @@ package com.github.mdstoy.stepchart.model.chart;
 
 public class ArrowAttribute {
 
-    Integer measure;
+    private Integer measure;
 
-    Position position;
+    private Position position;
 
-    Side side;
+    private Side side;
 
-    ArrowLocation location;
+    private ArrowLocation location;
 
     private ArrowAttribute(Integer measure, Position position, Side side, ArrowLocation location) {
         this.measure = measure;
