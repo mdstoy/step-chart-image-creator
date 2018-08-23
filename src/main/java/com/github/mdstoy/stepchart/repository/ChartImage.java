@@ -1,5 +1,6 @@
 package com.github.mdstoy.stepchart.repository;
 
+import com.github.mdstoy.stepchart.config.ImageConfiguration;
 import com.github.mdstoy.stepchart.model.chart.ArrowAttribute;
 import com.github.mdstoy.stepchart.model.chart.ArrowLocation;
 import com.github.mdstoy.stepchart.model.chart.Position;
@@ -7,7 +8,6 @@ import com.github.mdstoy.stepchart.model.chart.Style;
 import com.github.mdstoy.stepchart.model.object.Arrow;
 import com.github.mdstoy.stepchart.model.object.ArrowContainer;
 import com.github.mdstoy.stepchart.model.object.Background;
-import com.github.mdstoy.stepchart.model.object.BackgroundGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -30,8 +30,8 @@ public class ChartImage {
     private BufferedImage result;
 
     @Autowired
-    public ChartImage(BackgroundGenerator backgroundGenerator, ArrowContainer arrowContainer) throws IOException{
-        this.background = backgroundGenerator.getBackground();
+    public ChartImage(ImageConfiguration imageConfiguration, ArrowContainer arrowContainer) throws IOException{
+        this.background = Background.of(imageConfiguration.getBackground());
         this.arrowContainer = arrowContainer;
     }
 
