@@ -1,10 +1,12 @@
 package com.github.mdstoy.stepchart.model.chart;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class StyleTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     void of() {
         assertEquals(Style.SINGLE, Style.of(4));
         assertEquals(Style.DOUBLE, Style.of(8));
